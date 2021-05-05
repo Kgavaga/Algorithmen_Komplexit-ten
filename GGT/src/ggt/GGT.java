@@ -117,7 +117,6 @@ public class GGT {
                 num2 = (num2 - num1) / 2;
             }
         }
-        counter++;
 
         return (int) Math.pow(2, k) * num1;
     }
