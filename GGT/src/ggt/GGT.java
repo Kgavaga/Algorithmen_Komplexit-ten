@@ -15,7 +15,7 @@ public class GGT {
 //        System.out.println(getFastGGT(FIRST_NUMBER, SECOND_NUMBER));
 //        System.out.println(getRecursiveGGT(FIRST_NUMBER, SECOND_NUMBER));
 
-        System.out.println(getBinaryGCD(FIRST_NUMBER, SECOND_NUMBER));
+        System.out.println(getRecursiveBinaryGCD(FIRST_NUMBER, SECOND_NUMBER, 0));
     }
 
     private int getGGT(int num1, int num2) {
@@ -96,28 +96,30 @@ public class GGT {
     }
 
     private int getRecursiveBinaryGCD(int num1, int num2, int k) {
+
         System.out.println(num1 + ":" + num2);
+
         if (num1 == num2) {
             return (int) Math.pow(2, k) * num1;
-        }
-        
-        if (num1 % 2 == 0 && num2 % 2 == 0) {
+        } else if (num1 % 2 == 0 && num2 % 2 == 0) {
             num1 /= 2;
             num2 /= 2;
             k++;
-            
+            return getRecursiveBinaryGCD(num1, num2, k);
+
         } else if (num1 % 2 == 0) {
             num1 /= 2;
+            return getRecursiveBinaryGCD(num1, num2, k);
         } else if (num2 % 2 == 0) {
             num2 /= 2;
+            return getRecursiveBinaryGCD(num1, num2, k);
         } else {
             if (num1 > num2) {
                 num1 = (num1 - num2) / 2;
             } else {
                 num2 = (num2 - num1) / 2;
             }
+            return getRecursiveBinaryGCD(num1, num2, k);
         }
-
-        return (int) Math.pow(2, k) * num1;
     }
 }
