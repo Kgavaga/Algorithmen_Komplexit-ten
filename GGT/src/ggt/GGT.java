@@ -2,8 +2,8 @@ package ggt;
 
 public class GGT {
 
-    public static final int FIRST_NUMBER = 2267862;
-    public static final int SECOND_NUMBER = 683;
+    public static final int FIRST_NUMBER = 1632;
+    public static final int SECOND_NUMBER = 112;
     public static int counter = 0;
 
     public static void main(String[] args) {
@@ -12,10 +12,12 @@ public class GGT {
 
     public GGT() {
 //        System.out.println(getGGT(FIRST_NUMBER, SECOND_NUMBER));
-//        System.out.println(getFastGGT(FIRST_NUMBER, SECOND_NUMBER));
+        System.out.println(getFastGGT(FIRST_NUMBER, SECOND_NUMBER));
 //        System.out.println(getRecursiveGGT(FIRST_NUMBER, SECOND_NUMBER));
 
-        System.out.println(getRecursiveBinaryGCD(FIRST_NUMBER, SECOND_NUMBER, 0));
+        System.out.println(counter);
+
+        //System.out.println(getRecursiveBinaryGCD(FIRST_NUMBER, SECOND_NUMBER, 0));
     }
 
     private int getGGT(int num1, int num2) {

@@ -25,8 +25,8 @@ public class Fibonacci {
         }
     }
     
-    public long printRecursiveFib(int bound) {
-        return (bound == 0 || bound == 1) ? bound : printRecursiveFib(bound-1)+ printRecursiveFib(bound - 2);
+    public long printRecursiveFib(int x) {
+        return (x == 0 || x == 1) ? x : printRecursiveFib(x-1)+ printRecursiveFib(x - 2);
     }
     
 }
