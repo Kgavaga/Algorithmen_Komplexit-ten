@@ -6,12 +6,18 @@ public class Fibonacci {
         new Fibonacci();
     }
     
+    static int counter = 0;
+    
     public Fibonacci() {
-        printFib(50);
-        for(int i = 1; i <= 50; i++)
+        System.out.println(">"+System.nanoTime());
+        printFib(20);
+        System.out.println(">"+System.nanoTime());
+        for(int i = 1; i <= 20; i++)
         {
             System.out.println(printRecursiveFib(i));
         }
+        System.out.println(">"+System.nanoTime());
+        System.out.println(">"+counter);
     }
     
     public void printFib(int rounds) {
@@ -26,6 +32,7 @@ public class Fibonacci {
     }
     
     public long printRecursiveFib(int x) {
+        counter++;
         return (x == 0 || x == 1) ? x : printRecursiveFib(x-1)+ printRecursiveFib(x - 2);
     }
     
