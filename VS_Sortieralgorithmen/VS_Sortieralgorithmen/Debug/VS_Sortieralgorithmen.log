@@ -1,4 +1,0 @@
-﻿  QuickSort.cpp
-D:\Pilz-Studium\Studium\DHBW\Algorithmen_und_Komplexitaeten\Programming\Git\VS_Sortieralgorithmen\VS_Sortieralgorithmen\QuickSort.cpp(31,11): warning C4018: '<': signed/unsigned mismatch
-D:\Pilz-Studium\Studium\DHBW\Algorithmen_und_Komplexitaeten\Programming\Git\VS_Sortieralgorithmen\VS_Sortieralgorithmen\QuickSort.cpp(33,9): warning C4018: '>': signed/unsigned mismatch
-  VS_Sortieralgorithmen.vcxproj -> D:\Pilz-Studium\Studium\DHBW\Algorithmen_und_Komplexitaeten\Programming\Git\VS_Sortieralgorithmen\Debug\VS_Sortieralgorithmen.exe
