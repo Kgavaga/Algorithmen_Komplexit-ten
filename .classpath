@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Aufgabe1_2-CollatzProblem/src"/>
+	<classpathentry kind="src" path="Aufgabe1_4-Fibonacci/src"/>
+	<classpathentry kind="src" path="Aufgabe3_1-Induktionsbeweis/src"/>
+	<classpathentry kind="src" path="Aufgabe3_3-Binary_Search/src"/>
+	<classpathentry kind="src" path="Aufgabe5_2-LinkedQueue/src"/>
+	<classpathentry kind="src" path="ExtraAufgabe1-Mogroh/src"/>
+	<classpathentry kind="src" path="GGT/src"/>
+	<classpathentry kind="src" path="ZweiFaktoren/src"/>
+	<classpathentry kind="output" path="Aufgabe1_2-CollatzProblem/build/classes"/>
+</classpath>

@@ -9,7 +9,7 @@ int* MergeSort::sort(int* inputList, size_t len)
 
 int* iterativeSort(int* inputList, size_t len)
 {
-
+	return nullptr;
 }
 
 int* MergeSort::recursiveSort(int* inputList, size_t len)

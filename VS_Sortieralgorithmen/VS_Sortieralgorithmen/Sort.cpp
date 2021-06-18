@@ -156,7 +156,7 @@ void runAllAlgorithms(const int* inputList, size_t len, bool printArrays = true)
 int main(int argc, char** argv)
 {
 	size_t arrayLen = 100;
-	const bool printArrays = true;
+	const bool printArrays = false;
 	int* a;
 
 	if (argc > 1)
@@ -205,16 +205,23 @@ int main(int argc, char** argv)
 	else {
 		//a = getRandomArray(1, 50, arrayLen);
 		//a = getGoodArray(arrayLen);
-		a = getBadArray(arrayLen);
+		//a = getBadArray(arrayLen);
 
-		if (printArrays)
+		for (size_t i = 0; i < 5; i++)
 		{
-			std::cout << "Anfangs-Array:" << std::endl;
-			printArray(a, arrayLen);
-		}
-		std::cout << std::endl;
+			double len = std::pow(10, i+1);
+			std::string path = "../res/list_" + std::to_string(static_cast<int>(len)) + "auf.txt";
+			a = readFile(path, len);
+			if (printArrays)
+			{
+				std::cout << "Anfangs-Array:" << std::endl;
+				printArray(a, len);
+			}
+			std::cout << std::endl;
 
-		runAllAlgorithms(a, arrayLen, printArrays);
+			runAllAlgorithms(a, len, printArrays);
+			std::cout << std::endl;
+		}
 	}
 
 	delete[] a;

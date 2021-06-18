@@ -11,27 +11,52 @@ package com.main;
  */
 public class LinkedQueue implements Queue {
 
+    Eintrag head;
+    Eintrag tail;
+
     public LinkedQueue() {
+
     }
 
     @Override
     public boolean empty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return head == null;
     }
 
     @Override
     public void enq(Object x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (head == null) {
+            tail = new Eintrag();
+            tail.inhalt = x;
+            head = tail;
+        } else {
+            Eintrag temp = new Eintrag();
+            tail.next = temp;
+            tail = temp;
+            tail.inhalt = x;
+        }
     }
 
     @Override
     public Object front() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return head.inhalt;
     }
 
     @Override
     public void deq() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(empty()) return;
+        else if(head.next == null) head = tail = null;
+        else head = head.next;
     }
     
+    public void deqTail() {
+        Eintrag temp = head;
+        while(temp.next != tail){
+            temp = temp.next;
+        }
+        tail = temp;
+        tail.next = null;
+        
+    }
+
 }
