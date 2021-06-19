@@ -40,6 +40,17 @@ public class LinkedTree implements Tree {
             throw new RuntimeException(" Baum ist leer ");
         return wurzel.inhalt;
     }
+    
+    public boolean isLeaf()
+    {
+    	if(empty()) {
+    		return false;
+    	} else if(wurzel.links == null && wurzel.rechts == null)
+    	{
+    		return true;
+    	}
+    	return false;
+    }
 
     public Tree left() {                         // liefert linken Teilbaum
         if (empty())
