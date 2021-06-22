@@ -14,21 +14,21 @@ public class SearchTree extends LinkedTree implements Menge {
 
 	public Comparable lookup(Comparable x) {
 		// sucht x im SuchBaum
-		Knoten k = wurzel; // beginne bei wurzel
-		while (k != null) { // solange ein Knoten vorliegt
-			if (x.compareTo(k.inhalt) < 0) // vergleiche x mit Knoteninhalt
-				k = k.links; // steige je nach Vergleich in den
+		Knoten k = wurzel; 						// beginne bei wurzel
+		while (k != null) { 					// solange ein Knoten vorliegt
+			if (x.compareTo(k.inhalt) < 0) 		// vergleiche x mit Knoteninhalt
+				k = k.links; 					// steige je nach Vergleich in den
 			else if (x.compareTo(k.inhalt) > 0) // linken oder rechten Teilbaum hinab
 				k = k.rechts;
-			else // oder (d.h. bei Gleichheit)
-				return (Comparable) k.inhalt; // liefere das Objekt zurueck
+			else 								// oder (d.h. bei Gleichheit)
+				return (Comparable) k.inhalt; 	// liefere das Objekt zurueck
 		}
 
-		// Wenn kein Knoten mehr vorhanden
-		return null; // (letztes k ist Blatt) liefere null
+												// Wenn kein Knoten mehr vorhanden
+		return null; 							// (letztes k ist Blatt) liefere null
 	}
 
-	public boolean insert(Comparable x) { // versucht x einzufuegen
+	public boolean insert(Comparable x) { 		// versucht x einzufuegen
 
 		if (wurzel == null) { // Wenn Baum leer
 			wurzel = new Knoten(x); // fuege neuen Knoten ein

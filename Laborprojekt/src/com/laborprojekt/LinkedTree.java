@@ -41,13 +41,11 @@ public class LinkedTree implements Tree {
         return wurzel.inhalt;
     }
     
-    public boolean isLeaf()
+    public boolean isLeaf()						// liefert true, falls Baum ein Blatt ist
     {
-    	if(empty()) {
-    		return false;
-    	} else if(wurzel.links == null && wurzel.rechts == null)
+    	if(!empty() && left().empty() && right().empty())
     	{
-    		return true;
+    		return true; // Bestitzt keine Söhne, deswegen true
     	}
     	return false;
     }

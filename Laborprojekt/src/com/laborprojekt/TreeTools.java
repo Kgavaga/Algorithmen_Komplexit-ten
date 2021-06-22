@@ -10,69 +10,27 @@ import java.util.Iterator;
 public class TreeTools {
 
 	/**
-	 * Ermittelt die Hoehe eines Baumes
-	 * 
+	 * Ermittelt die Hoehe eines Baumes.
+	 * Alle Pfade abgehen und den längsten Pfad zurückgeben (Anzahl Knoten)
 	 * @param b der zu uebergebende Baum
 	 * @return Hoehe des Baumes
 	 */
 	public static int treeHeight(Tree b) {
-		return treeHeight(b, 0);
-	}
-
-	public static int treeHeight(Tree b, int counter) {
-		// TODO
-		// Alle Pfade abgehen und den lächsten Pfad zurückgeben (Anzahl Knoten)
-		if (b.empty()) {
-			return counter;
-		}
-
-		if (b.isLeaf()) {
-			return ++counter;
-		} else {
-			counter++; // Zählt die Ebene auf der die Rekursion ist.
-			int result1 = 0;
-			int result2 = 0;
-			try {
-				result1 = treeHeight(b.left(), counter);
-			} catch (RuntimeException re) {
-			}
-			try {
-				result2 = treeHeight(b.right(), counter);
-			} catch (RuntimeException re) {
-			}
-			return (result1 > result2) ? result1 : result2;
-		}
+		if(b.empty()) return 0; // Fängt ab, dass left() oder right() keine RuntimeException ausgeben
+		if(b.isLeaf()) return 1;
+		return Math.max(treeHeight(b.left()), treeHeight(b.right())) + 1 ; // Das +1 zählt die Ebene
 	}
 
 	/**
-	 * Ermittelt die Anzahl der Knoten eines Baumes
-	 * 
+	 * Ermittelt die Anzahl der Knoten eines Baumes.
+	 * // Wieder Rekursion anwenden, nur hier alle Knoten zählen.
 	 * @param b der zu uebergebende Baum
 	 * @return Anzahl der Knoten des Baumes
 	 */
 	public static int anzahlKnoten(Tree b) {
-		return anzahlKnoten(b, 0);
-	}
-
-	public static int anzahlKnoten(Tree b, int counter) {
-		// TODO
-		// Wieder Rekursion anwenden, nur hier alle Knoten zählen.
-		if (!b.empty()) {
-			counter++;
-		}
-		if (b.isLeaf()) {
-			return counter;
-		} else {
-			try {
-				counter = anzahlKnoten(b.left(), counter);
-			} catch (RuntimeException re) {
-			}
-			try {
-				counter = anzahlKnoten(b.right(), counter);
-			} catch (RuntimeException re) {
-			}
-			return counter;
-		}
+		if (b.empty())return 0;
+		if (b.isLeaf()) return 1; // Zählt das Blatt
+		return anzahlKnoten(b.left()) + anzahlKnoten(b.right()) + 1; // Das +1 zählt den inneren Knoten
 	}
 
 	/**
@@ -81,25 +39,16 @@ public class TreeTools {
 	 * @param b der zu uebergebende Baum
 	 */
 	public static void printTreeInorderWithParenthesis(Tree b) {
-		// TODO
-		if (b.empty())
-			return;
+		if (b.empty()) return; // Fängt ab, dass left() oder right() keine RuntimeException ausgeben
 
 		if (b.isLeaf()) {
-			StdOut.print(b.value());
+			StdOut.print(b.value()); // Wenn es ein Blatt ist, einfach den Inhalt ausgeben.
 			return;
 		}
-
 		StdOut.print("(");
-		try {
-			printTreeInorderWithParenthesis(b.left());
-		} catch (RuntimeException re) {
-		}
-		StdOut.print(b.value());
-		try {
-			printTreeInorderWithParenthesis(b.right());
-		} catch (RuntimeException re) {
-		}
+		printTreeInorderWithParenthesis(b.left());
+		StdOut.print(b.value()); // Hier erfolgt die Ausgabe der inneren Knoten
+		printTreeInorderWithParenthesis(b.right());
 		StdOut.print(")");
 	}
 
@@ -109,33 +58,24 @@ public class TreeTools {
 	 * @param b der zu uebergebende Baum
 	 */
 	public static void printTreeLevelorder(Tree b) {
+		// Erstellt eine Array aus Knoten (Teilbäume) mit der Größe, der vollständige Version
+		// des Baumes (also max. Knoten)
 		Tree knotsList[] = new Tree[(int) (Math.pow(2, anzahlKnoten(b)) - 1)];
 		printTreeLevelorder(b, knotsList, 1);
 		for (Tree k : knotsList) {
 			if (k != null)
 				StdOut.print(k.value() + " ");
 		}
-
 	}
 
-	public static void printTreeLevelorder(Tree b, Tree[] knotsList, int index) {
-		// TODO
-		if (b.empty())
-			return;
+	private static void printTreeLevelorder(Tree b, Tree[] knotsList, int index) {
+		if (b.empty())return;
 
-		knotsList[index - 1] = b;
+		knotsList[index - 1] = b; // -1 um den Index zu korrigieren, da die Array von 0 beginnt.
 
-		if (b.isLeaf()) {
-			return;
-		} else {
-			try {
-				printTreeLevelorder(b.left(), knotsList, 2 * index);
-			} catch (RuntimeException re) {
-			}
-			try {
-				printTreeLevelorder(b.right(), knotsList, 2 * index + 1);
-			} catch (RuntimeException re) {
-			}
+		if (!b.isLeaf()) {
+			printTreeLevelorder(b.left(), knotsList, 2 * index);
+			printTreeLevelorder(b.right(), knotsList, 2 * index + 1);
 		}
 	}
 
@@ -147,11 +87,10 @@ public class TreeTools {
 	 */
 	public static int[] searchTreeSort(int[] zahlen) {
 		SearchTree st = new SearchTree();
-		// TODO
 		for (int i : zahlen) {
-			st.insert(i);
+			st.insert(i); // Nacheinander die Elemente der Array zahlen in den Suchbaum einfügen.
 		}
-		printTree(st);
+		//printTree(st);
 		LinkedStack ls = new LinkedStack(); 
 		tree2SortedStack(st, ls);
 		int[] result = new int[zahlen.length];
@@ -169,24 +108,10 @@ public class TreeTools {
 	 * @param k Stack in den der SearchTree Inhalt sortiert werden soll
 	 */
 	private static void tree2SortedStack(Tree b, Stack k) {
-		if (b.empty())
-			return;
-
-		if (b.isLeaf()) {
-			k.push(b.value());
-			return;
-		}
-
-		try {
-			tree2SortedStack(b.left(), k);
-		} catch (RuntimeException re) {
-		}
-		k.push(b.value());
-		try {
-			tree2SortedStack(b.right(), k);
-		} catch (RuntimeException re) {
-		}
-
+		if (b.empty())return;
+		tree2SortedStack(b.left(), k);
+		k.push(b.value()); // Hier wird der Knoten auf den Stack gepusht.
+		tree2SortedStack(b.right(), k);
 	}
 
 	/**
