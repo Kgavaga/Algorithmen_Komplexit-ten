@@ -46,43 +46,55 @@ public class TreeToolsTest {
 			StdOut.print(list[i]);
 		}
 
-		StdOut.println();
-
+		StdOut.println("\n");
+		
+		StdOut.println("Gebe ein, wie viele Baeume generiert werden sollen.");
 		int num1 = StdIn.readInt();
+		StdOut.println("Gebe ein, wie viele Knoten jeder Baum besitzen soll.");
 		int num2 = StdIn.readInt();
-		while(true) {
-			runTest(num1, num2);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		evaluateAverageHeightOfTrees(num1, num2);
 	}
-	
-	private static void runTest(int numberOfSearchTrees, int numberOfKnots)
+
+	/**
+	 * Generiert einen zufällige Suchbäume und rechnet die Höhe dieser aus.
+	 * Am Ende mittelt es die Ergebnise zu einer durschnittlichen Höhe
+	 * @param numberOfSearchTrees, numberOfKnots
+	 * @return Tree
+	 */
+	private static void evaluateAverageHeightOfTrees(int numberOfSearchTrees, int numberOfKnots)
 	{
 		double average = 0;
 		for (int i = 0; i < numberOfSearchTrees; i++) {
+			//Größe eines zufällig generierten Baumes ermitteln
 			int result = TreeTools.treeHeight(generateRandomSearchTree(numberOfKnots));
 			StdOut.println("Hoehe Suchbaum " + i + ": " + result);
 			average += result;
 		}
 		average /= numberOfSearchTrees;
-		StdOut.println("Durchschnittliche Hoehe: " + average + " (entspricht " + average/(Math.log(numberOfKnots)/Math.log(2)) + " * log(n))");
+		//Average soll bei der Ausgabe aufgerundet werden, deswegen der Cast.
+		StdOut.println("Durchschnittliche Hoehe: " + (int)average + " (entspricht " + average/(Math.log(numberOfKnots)/Math.log(2)) + " * log(n))");
 	}
 	
+	/**
+	 * Generiert einen zufälligen Suchbaum mit numberOfKnots Knoten
+	 * @param numberOfKnots - AnzahlKnoten
+	 * @return Tree
+	 */
 	private static Tree generateRandomSearchTree(int numberOfKnots){
 		SearchTree st = new SearchTree();
 		int[] numberArray = generateNumberArray(numberOfKnots);
 		StdRandom.shuffle(numberArray);
 		for (int i = 0; i < numberOfKnots; i++) {
-			st.insert(numberArray[i]);
+			st.insert(numberArray[i]); // Alle Elemente der numberArray einzeln in den Suchbaum einfügen
 		}
 		return st;
 	}
 	
+	/**
+	 * Generiert ein hochzählendes Array der Größe len
+	 * @param len - Elementenanzahl
+	 * @return int[]
+	 */
 	private static int[] generateNumberArray(int len) {
 		int[] result = new int[len];
 		for (int i = 0; i < len; i++) {

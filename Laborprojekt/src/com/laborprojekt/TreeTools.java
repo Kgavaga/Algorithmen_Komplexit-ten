@@ -53,7 +53,7 @@ public class TreeTools {
 	}
 
 	/**
-	 * gibt den übergebenen Baum in Levelorder-Traversierung aus
+	 * Gibt den übergebenen Baum in Levelorder-Traversierung aus
 	 * 
 	 * @param b der zu uebergebende Baum
 	 */
